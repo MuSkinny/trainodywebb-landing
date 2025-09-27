@@ -1,0 +1,104 @@
+{
+  "hero": {
+    "badgeReviewText": "ci hanno scelto",
+    "title": "Automatizza le schede di allenamento e moltiplica i tuoi clienti",
+    "subtitle": "Crea schede di allenamento personalizzate in pochi minuti, monitora i progressi dei clienti e gestisci il tuo business da un'unica piattaforma",
+    "ctaButtonText": "Prova Gratis"
+  },
+  "marquee": {
+      "text": "Iscriviti gratuitamente"
+  },
+    "dash": {
+      "active_clients": "Clienti Attivi",
+      "weekly_sessions": "Sessioni Settimanli",
+      "next_event": "Prossimo Appuntamento",
+      "workouts_status": "Stato Allenamenti",
+      "see_all": "Vedi Tutto",
+      "new_clients": "Nuovi Clienti",
+      "assign_workout":"Assegna scheda"
+    },
+    "clients":{
+      "link_new_client": {
+        "buttonTitle": "Crea Link Cliente",
+        "dialogTitle": "Link d'invito",
+        "dialogDescription": "Condividi questo link con il tuo cliente",
+        "close": "Chiudi" 
+      },
+      "profile": "Profilo",
+      "name": "Nome",
+      "start_date": "Aggiunto",
+      "find_client": "Cerca cliente",
+      "no_clients_found": "Nessun cliente trovato"
+    },
+    "settings": {
+      "settings":"Impostazioni", 
+      "profile": "Profilo",
+      "gym": "Palestra/Studio",
+      "preferences": "Preferenze",
+      "personal_info": "Informazioni Personali",
+      "name": "Nome",
+      "surname": "Cognome",
+      "phone": "Telefono",
+      "save": "Salva",
+      "notification":"Notifiche",
+      "email_notification":"Notifiche Email",
+      "email_notification_desc": "Ricevi email per nuovi appuntamenti",
+      "personalize": "Personalizzazione",
+      "dark_theme":"Tema Scuro",
+      "dark_theme_desc": "Attiva/disattiva modalità scura",
+      "language": "Lingua",
+      "theme": "Tema"
+    },
+    "common": {
+      "save": "Salva",
+      "cancel": "Annulla",
+      "loading": "Caricamento...",
+      "page": "Pagina",
+      "of": "di",
+      "month": "mese",
+      "year": "anno",
+      "show_less":"Mostra meno",
+      "show_all": "Mostra tutto"
+    },
+    "menu": {
+      "features": "Features",
+      "pricing": "Pricing",
+      "faq": "FAQ"
+    },
+    "features": {
+      "badge_text": "Features",
+      "title": "Tutto ciò di cui hai bisogno",
+      "subtitle": "Offri ai tuoi clienti un'esperienza di allenamento insostituibile",
+      "handle_clients": "Gestione Clienti",
+      "handle_clients_desc": "Traccia e gestisci i tuoi clienti in modo efficiente con profili dettagliati ed analisi dei progressi",
+      "custom_workout":"Schede Personalizzate",
+      "custom_workout_desc":"Crea e condividi schede di allenamento su misura per ogni cliente",
+      "calendar": "Calendario Integrato",
+      "calendar_desc": "Gestisci appuntamenti e sessioni di allenamento in modo semplice e intuitivo con il calendario integrato",
+      "exercises": "Video Esercizi",
+      "exercises_desc": "Biblioteca di video dimostrativi per garantire la corretta esecuzione degli esercizi",
+      "chat": "Chat Integrata",
+      "chat_desc": "Rispondi facilmente a tutte le domande e i dubbi dei tuoi clienti attraverso la chat integrata",
+      "payment": "Gestione Pagamenti",
+      "payment_desc": "Accetta pagamenti e gestisci gli abbonamenti direttamente dalla piattaforma",
+      "app": "App Mobile",
+      "app_desc": "App gratuita dedicata per i tuoi clienti per tracciare allenamenti e visualizzare le schede personali"
+    },
+    "pricing": {
+      "badge_text":"Prezzi",
+      "title": "Inizia subito gratuitamente",
+      "subtitle": "Scopri tutti i vantaggi che puoi ottenere dai nostri piani di abbonamento",
+      "try": "Prova ora",
+      "contact_us": "Hai bisogno di una soluzione completamente personalizzata?",
+      "contact": "Contattaci"
+    },
+    "reviews": {
+      "badge_text": "Recensioni",
+      "title": "Unisciti ai nostri utilizzatori",
+      "subtitle": "Leggi quello che i nostri clienti pensano di noi"
+    },
+    "faq": {
+      "title": "Alcuni dubbi frequenti",
+      "subtitle": "Hai altre domande? Contattaci su Instagram o via email"
+  }
+}

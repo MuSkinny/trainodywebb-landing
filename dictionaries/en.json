@@ -1,0 +1,104 @@
+{
+  "hero": {
+    "badgeReviewText": "choosed us",
+    "title": "Automate workout sheets and multiply your clients",
+    "subtitle": "Create personalized workout plans in minutes, track client progress, and manage your business from a single platform",
+    "ctaButtonText": "Start for free"
+  },
+  "marquee": {
+      "text": "Join for free"
+  },
+    "dash": {
+      "active_clients": "Active Clients",
+      "weekly_sessions": "Weekly Sessions",
+      "next_event": "Next Scheduled Event",
+      "workouts_status": "Workouts Status",
+      "see_all": "See All",
+      "new_clients": "New Clients",
+      "assign_workout":"Assign plan"
+    },
+    "clients":{
+      "link_new_client": {
+        "buttonTitle": "New Client Link",
+        "dialogTitle": "Invite Link",
+        "dialogDescription": "Share this link with your client",
+        "close": "Close" 
+      },
+      "profile": "Profile",
+      "name": "Name",
+      "start_date": "Joined",
+      "find_client": "Search client",
+      "no_clients_found": "No clients found"
+    },
+    "settings": {
+      "settings":"Settings",
+      "profile": "Profile",
+      "gym": "Gym",
+      "preferences": "Preferences",
+      "personal_info": "Personal Information",
+      "name": "Name",
+      "surname": "Surname",
+      "phone": "Phone",
+      "save": "Save",
+      "notification":"Notifications",
+      "email_notification":"Email Notifications",
+      "email_notification_desc": "Receive emails for new appointments",
+      "personalize": "Personalize",
+      "dark_theme":"Dark Theme",
+      "dark_theme_desc": "Enable/Disable dark mode",
+      "language": "Language",
+      "theme": "Theme"
+    },
+    "common": {
+      "save": "Save",
+      "cancel": "Cancel",
+      "loading": "Loading...",
+      "page": "Page",
+      "of": "of",
+      "month": "month",
+      "year": "year",
+      "show_less":"Show less",
+      "show_all": "Show all"
+    },
+    "menu": {
+      "features": "Features",
+      "pricing": "Pricing",
+      "faq": "FAQ"
+    },
+    "features": {
+      "badge_text": "Features",
+      "title": "Everything you need",
+      "subtitle": "Offer your clients an irreplaceable training experience",
+      "handle_clients":"Customers Management",
+      "handle_clients_desc":"Track and manage your clients efficiently with detailed profiles and progress analysis",
+      "custom_workout":"Custom Workout Plans",
+      "custom_workout_desc":"Create and share tailored training programs for each client",
+      "calendar": "Integrated Calendar",
+      "calendar_desc": "Manage appointments and training sessions easily and intuitively with the integrated calendar",
+      "exercises": "Exercise Videos",
+      "exercises_desc": "Video library with demonstrations to ensure proper exercise execution",
+      "chat": "Integrated Chat",
+      "chat_desc": "Easily answer all your clients' questions and concerns through the integrated chat",
+      "payment": "Payment Management",
+      "payment_desc": "Accept payments and manage subscriptions directly from the platform",
+      "app": "Mobile App",
+      "app_desc": "Free client app to track workouts and view personal training plans"
+    },
+    "pricing": {
+      "badge_text": "Pricing",
+      "title": "Start For Free Today",
+      "subtitle": "Discover all the benefits of our subscription plans",
+      "try": "Try now",
+      "contact_us": "Do you need a full custom version?",
+      "contact": "Contatc us"
+    },
+    "reviews": {
+      "badge_text": "Reviews",
+      "title": "Join now our users",
+      "subtitle": "Read what our customers think about us."
+    },
+    "faq": {
+      "title": "Common questions",
+      "subtitle": "Have another question? Contact us on Instagram or by email."
+    }
+}
