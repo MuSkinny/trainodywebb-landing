@@ -1,6 +1,6 @@
 {
   "hero": {
-    "badgeReviewText": "choosed us",
+    "badgeReviewText": "they chose us",
     "title": "Automate workout sheets and multiply your clients",
     "subtitle": "Create personalized workout plans in minutes, track client progress, and manage your business from a single platform",
     "ctaButtonText": "Start for free"
@@ -90,11 +90,11 @@
       "subtitle": "Discover all the benefits of our subscription plans",
       "try": "Try now",
       "contact_us": "Do you need a full custom version?",
-      "contact": "Contatc us"
+      "contact": "Contact us"
     },
     "reviews": {
       "badge_text": "Reviews",
-      "title": "Join now our users",
+      "title": "Join our growing community",
       "subtitle": "Read what our customers think about us."
     },
     "faq": {
