@@ -7,15 +7,28 @@ import { Metadata } from "next";
 import Banner from "@/components/banner";
 import { TranslationsProvider } from "@/context/translation-context";
 import { getDictionary } from "@/lib/dictionary";
-import Head from "next/head";
+import { SITE_URL } from "@/lib/seo";
 
 
-export const metadata: Metadata = {
-  title: "Trainody - La soluzione migliore per i personal trainer",
-  description: "Tieni traccia delle schede dei tuoi clienti, monitora i loro progressi e risolvi ogni loro dubbio grazie a Trainody",
-  openGraph: {
-    description: "Tieni traccia delle schede dei tuoi clienti, monitora i loro progressi e risolvi ogni loro dubbio grazie a Trainody"
-  }
+export async function generateMetadata({
+  params,
+}: {
+  params: { lang: "it" | "en" };
+}): Promise<Metadata> {
+  const lang = params.lang === "en" ? "en" : "it";
+  return {
+    metadataBase: new URL(SITE_URL),
+    openGraph: {
+      type: "website",
+      siteName: "Trainody",
+      locale: lang === "it" ? "it_IT" : "en_US",
+      images: [{ url: "/og-image.png", width: 1200, height: 630 }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      images: ["/og-image.png"],
+    },
+  };
 }
 
 export async function generateStaticParams() {
@@ -42,15 +55,6 @@ export default async function RootLayout({
   return (
     <TranslationsProvider dictionary={dictionary}>
     <html lang={lang} className={GeistSans.className} suppressHydrationWarning>
-      <Head>
-        {/* Aggiunge un link preload per l'immagine */}
-        <link
-          rel="preload"
-          href="../../public/assets/img_body.png"  // Sostituisci con il path della tua immagine
-          as="image"
-          type="image/png"
-        />
-      </Head>
       <body className="bg-[#0f0f0f] text-background">
         
           <main className="min-h-screen flex flex-col items-center">

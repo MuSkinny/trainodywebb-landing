@@ -7,7 +7,37 @@ import VerticalHero from "@/components/hero/VerticalHero";
 import LogoMarquee from "@/components/logo-marquee";
 import Pricing from "@/components/pricing";
 import TestimonialGrid from "@/components/testimonials/testimonials-grid";
+import JsonLd from "@/components/json-ld";
+import { buildMetadata } from "@/lib/seo";
+import type { Metadata } from "next";
 import { cookies } from "next/headers";
+
+const homeMeta = {
+  it: {
+    title: "Trainody — Software gestionale per personal trainer",
+    description:
+      "Software gestionale per personal trainer: crea schede di allenamento, monitora i clienti e gestisci pagamenti e calendario in un'unica piattaforma. Inizia gratis.",
+  },
+  en: {
+    title: "Trainody — Personal trainer software & client management",
+    description:
+      "All-in-one personal trainer software: build workout plans, track client progress, and manage payments and scheduling in one platform. Start for free.",
+  },
+};
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { lang: "it" | "en" };
+}): Promise<Metadata> {
+  const lang = params.lang === "en" ? "en" : "it";
+  return buildMetadata({
+    lang,
+    path: "",
+    title: homeMeta[lang].title,
+    description: homeMeta[lang].description,
+  });
+}
 
 export default async function Index() {
   const cookieStore = cookies()
@@ -15,6 +45,7 @@ export default async function Index() {
 
   return (
     <div className="w-full mx-auto bg-[#0f0f0f] relative">
+      <JsonLd lang={lang === "en" ? "en" : "it"} />
       <Header lang={lang} />
       {/* <VerticalHero lang={lang} /> */}
       <Hero lang={lang} />

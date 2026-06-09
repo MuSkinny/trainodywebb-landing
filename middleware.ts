@@ -43,7 +43,12 @@ export async function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
   let response = NextResponse.next();
   
-  if(pathname.includes('favicon.ico')) {
+  // Route di metadata SEO servite alla radice: non devono ricevere il prefisso di lingua.
+  if (
+    pathname.includes('favicon.ico') ||
+    pathname === '/robots.txt' ||
+    pathname === '/sitemap.xml'
+  ) {
     return response;
   }
  
