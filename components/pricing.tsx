@@ -2,119 +2,17 @@ import { Banknote } from "lucide-react"
 import ButtonCheckout from "./button-checkout"
 import Link from "next/link"
 import { getDictionary } from "@/lib/dictionary"
+import { plans } from "@/lib/plans"
 
 const Pricing = async ({
     lang
 }: {
     lang: string
 }) => {
-   
-    if(!lang || lang !== 'it' && lang !== 'en') return 
-    
+
+    if(!lang || lang !== 'it' && lang !== 'en') return
+
     const dict = await getDictionary(lang)
-    const plans = [
-        {
-            name: "Basic",
-            price: "Gratis",
-            price_en: "Free",
-            oldPrice: "",
-            bestSeller: false,
-            features: [
-                {
-                    title: "Gestisci fino a 2 clienti",
-                    title_en: "Manage up to 2 clients",
-                    check: true
-                },
-                {
-                    title: "Disdici in qualsiasi momento",
-                    title_en: "Cancel anytime",
-                    check: true
-                },
-                {
-                    title: 'App Mobile (iOS / Android) per i clienti',
-                    title_en: 'Mobile App (iOS / Android) for clients',
-                    check: true
-                },
-                {
-                    title: 'Chat Clienti',
-                    title_en: 'Client Chat',
-                    check: true
-                },
-                {
-                    title: 'Gestione pagamenti online',
-                    title_en: 'Online payment management',
-                    check: false
-                }
-            ]
-        },
-        {
-            name: "Pro",
-            price: "€19.90",
-            price_en: "€19.90",
-            oldPrice: "",
-            bestSeller: true,
-            features: [
-                {
-                    title: "Gestisci fino a 20 clienti",
-                    title_en: "Manage up to 20 clients",
-                    check: true
-                },
-                {
-                    title: "Disdici in qualsiasi momento",
-                    title_en: "Cancel anytime",
-                    check: true
-                },
-                {
-                    title: 'App Mobile (iOS / Android) per i clienti',
-                    title_en: 'Mobile App (iOS / Android) for clients',
-                    check: true
-                },
-                {
-                    title: 'Chat Clienti',
-                    title_en: 'Client Chat',
-                    check: true
-                },
-                {
-                    title: 'Gestione pagamenti online',
-                    title_en: 'Online payment management',
-                    check: false
-                }
-            ]
-        },
-        {
-            name: "Business",
-            price: "€49.90",
-            oldPrice: "",
-            bestSeller: false,
-            features: [
-                {
-                    title: "Gestisci fino a 50 clienti",
-                    title_en: "Manage up to 50 clients",
-                    check: true
-                },
-                {
-                    title: "Disdici in qualsiasi momento",
-                    title_en: "Cancel anytime",
-                    check: true
-                },
-                {
-                    title: 'App Mobile (iOS / Android) per i clienti',
-                    title_en: 'Mobile App (iOS / Android) for clients',
-                    check: true
-                },
-                {
-                    title: 'Chat Clienti',
-                    title_en: 'Client Chat',
-                    check: true
-                },
-                {
-                    title: 'Gestione pagamenti online',
-                    title_en: 'Online payment management',
-                    check: true
-                }
-            ]
-        }
-    ]
 
     return(
         <section className="w-full flex flex-col justify-center" id="pricing">
@@ -205,7 +103,7 @@ const Pricing = async ({
             <div className="flex max-w-md lg:max-w-3xl mx-auto w-full text-center flex-col items-center justify-center pt-14 gap-2">
                 <span className="text-lg">{dict.pricing.contact_us}</span>
                 <a 
-                    href="mailto:trainody@gmail.com"
+                    href="mailto:info@trainody.com"
                     className="flex px-6 py-2 bg-primary rounded-lg text-black font-medium"
                 >
                     {dict.pricing.contact}
