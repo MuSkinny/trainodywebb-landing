@@ -72,7 +72,7 @@ const Header = ({lang}: {lang: string}) => {
                     href={content.href}
                     className="text-muted-foreground hover:text-foreground"
                 >
-                    {content.title}
+                    {lang == 'it' ? content.title_it : content.title_en}
                 </Link>
                 ))}
                 <Link href={"https://app.trainody.com/sign-in"}>

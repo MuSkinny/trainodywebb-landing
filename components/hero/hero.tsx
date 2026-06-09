@@ -16,7 +16,7 @@ const Hero = async ({ lang }: { lang: any }) => {
             {/* Usa Next/Image per l'ottimizzazione automatica */}
             <Image
                 src={body}  // Sostituisci con il path della tua immagine
-                alt="Hero background"
+                alt=""
                 fill
                 priority  // Indica a Next.js di caricare questa immagine con priorità
                 quality={75}  // Ottimizza la qualità dell'immagine (default è 75)
