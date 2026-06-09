@@ -1,6 +1,19 @@
 
-import { GeistSans } from "geist/font/sans";
+import { Archivo, Archivo_Black } from "next/font/google";
 import "./globals.css";
+
+const archivo = Archivo({
+  subsets: ["latin"],
+  variable: "--font-sans",
+  display: "swap",
+});
+
+const archivoBlack = Archivo_Black({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-display",
+  display: "swap",
+});
 import Header from "@/components/header/floating-header";
 import Footer from "@/components/footer";
 import { Metadata } from "next";
@@ -15,9 +28,10 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 export async function generateMetadata({
   params,
 }: {
-  params: { lang: "it" | "en" };
+  params: Promise<{ lang: string }>;
 }): Promise<Metadata> {
-  const lang = params.lang === "en" ? "en" : "it";
+  const { lang: rawLang } = await params;
+  const lang = rawLang === "en" ? "en" : "it";
   return {
     metadataBase: new URL(SITE_URL),
     openGraph: {
@@ -43,10 +57,10 @@ export default async function RootLayout({
   params
 }: {
   children: React.ReactNode,
-  params: { lang: 'it' | 'en' }
+  params: Promise<{ lang: string }>
 }) {
 
-  const lang = params.lang
+  const { lang } = await params
   // Verifica che lang sia definito
   if (!lang || (lang !== 'it' && lang !== 'en')) {
     return 
@@ -56,8 +70,12 @@ export default async function RootLayout({
 
   return (
     <TranslationsProvider dictionary={dictionary}>
-    <html lang={lang} className={GeistSans.className} suppressHydrationWarning>
-      <body className="bg-[#0f0f0f] text-background">
+    <html
+      lang={lang}
+      className={`dark ${archivo.variable} ${archivoBlack.variable} ${archivo.className}`}
+      suppressHydrationWarning
+    >
+      <body className="bg-background text-foreground font-sans">
         
           <main className="min-h-screen flex flex-col items-center">
             <div className="flex-1 w-full flex flex-col  items-center">

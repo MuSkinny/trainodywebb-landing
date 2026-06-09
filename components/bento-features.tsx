@@ -1,196 +1,341 @@
-import { CalendarCheck2, Play, Sparkles, UsersRound } from "lucide-react";
-import RetroGrid from "./ui/retro-grid";
+import {
+  CalendarCheck2,
+  Check,
+  CreditCard,
+  Dumbbell,
+  MessageSquare,
+  Smartphone,
+  Sparkles,
+  TrendingUp,
+  UsersRound,
+  Video,
+} from "lucide-react";
 import ScrollReveal from "./animations/scroll-reveal";
 import { Calendar } from "./ui/calendar";
-import Iphone15Pro from "./ui/iphone-15-pro";
-import { AnimatedListComp } from "./animated-list-comp";
 import { getDictionary } from "@/lib/dictionary";
 
+const cardCls =
+  "group relative flex flex-col overflow-hidden rounded-xl bg-surface ring-1 ring-border transition-all duration-300 hover:ring-primary/40 hover:shadow-glow";
 
-const BentoFeatures = async ({
-  lang
+const CardHeader = ({
+  Icon,
+  title,
+  desc,
 }: {
-  lang: string
-}) => {
+  Icon: any;
+  title: string;
+  desc: string;
+}) => (
+  <div className="p-6 pb-4">
+    <div className="mb-3 inline-flex size-9 items-center justify-center rounded-lg bg-primary/10 text-primary ring-1 ring-primary/20">
+      <Icon className="size-[18px]" />
+    </div>
+    <h3 className="font-display text-base uppercase tracking-tight text-foreground">
+      {title}
+    </h3>
+    <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">{desc}</p>
+  </div>
+);
 
-  if(!lang || lang !== 'it' && lang !== 'en') return
-  const dict = await getDictionary(lang)
+const BentoFeatures = async ({ lang }: { lang: string }) => {
+  if (!lang || (lang !== "it" && lang !== "en")) return;
+  const dict = await getDictionary(lang);
+  const it = lang === "it";
+
+  const clients = [
+    { initials: "MR", name: "Marco R.", prog: 82 },
+    { initials: "AB", name: "Anna B.", prog: 64 },
+    { initials: "LG", name: "Luca G.", prog: 45 },
+    { initials: "SF", name: "Sara F.", prog: 91 },
+  ];
+
+  const exercises = it
+    ? [
+        ["Panca piana", "4 × 10", true],
+        ["Squat", "5 × 8", true],
+        ["Stacco da terra", "3 × 12", true],
+        ["Lat machine", "4 × 12", false],
+      ]
+    : [
+        ["Bench Press", "4 × 10", true],
+        ["Squat", "5 × 8", true],
+        ["Deadlift", "3 × 12", true],
+        ["Lat Pulldown", "4 × 12", false],
+      ];
+
+  const revenue = [45, 62, 50, 78, 60, 88, 72];
 
   return (
     <section className="w-full flex flex-col gap-y-14 pb-24 pt-32" id="funzioni">
+      <ScrollReveal delay={0.2}>
+        <div className="lg:px-14 w-full flex flex-col items-center pt-8">
+          <div className="flex items-center gap-2 rounded-full border border-border bg-surface px-3.5 py-1.5">
+            <Sparkles className="size-4 text-primary" />
+            <span className="text-foreground text-xs uppercase tracking-wider">
+              {dict.features.badge_text}
+            </span>
+          </div>
 
-    <ScrollReveal delay={0.2}>
-        <div className="lg:px-14 w-full flex flex-col items-center justify-items-center pt-8">            
-            <div className="flex items-center justify-center gap-2 rounded-lg border bg-card px-3 py-1.5 text-foreground/90 shadow-sm">
-                <Sparkles className="size-5" />
-                <span className="text-foreground text-sm">{dict.features.badge_text}</span>
-            </div>
-               
-            
-            
-            <div className="mt-4 flex flex-col ">
-                <h2 className="text-3xl lg:text-4xl font-medium text-balance text-center tracking-tight">
-                  {dict.features.title}
-                </h2>
-                <p className="max-w-3xl text-pretty text-center text-muted-foreground md:text-lg">
-                  {dict.features.subtitle}
-                </p>
-            </div>
-            
+          <h2 className="mt-5 font-display text-3xl uppercase lg:text-5xl text-balance text-center tracking-tight">
+            {dict.features.title}
+          </h2>
+          <p className="mt-3 max-w-2xl text-pretty text-center text-muted-foreground md:text-lg">
+            {dict.features.subtitle}
+          </p>
         </div>
-    </ScrollReveal>
-    
-    <div className="mx-auto mt-4 grid max-w-lg p-2 grid-cols-1 gap-6 text-gray-500 md:max-w-3xl md:grid-cols-2 xl:grid-rows-2 md:grid-rows-3 xl:max-w-6xl xl:auto-rows-fr xl:grid-cols-3">
-        {/* features */}
-        
-        <div className="group relative flex flex-col justify-between items-start overflow-hidden p-6 rounded-lg bg-[#1A1A1A] ring-1 ring-primary/20 transition-all duration-500 ease-out ">
-            {/* card title */}
-            <div className="flex flex-col items-start justify-center gap-2 pb-2">
-                <div>
-                <h3 className="font-semibold mb-2 text-primary">
-                  {dict.features.handle_clients}
-                </h3>
-                <p className="text-muted-foreground">
-                  {dict.features.handle_clients_desc}
-                </p>
+      </ScrollReveal>
+
+      <div className="mx-auto grid w-full max-w-lg grid-cols-1 gap-5 px-4 md:max-w-3xl md:grid-cols-2 xl:max-w-6xl xl:grid-cols-3">
+        {/* 1 — Gestione Clienti */}
+        <div className={cardCls}>
+          <CardHeader
+            Icon={UsersRound}
+            title={dict.features.handle_clients}
+            desc={dict.features.handle_clients_desc}
+          />
+          <div className="flex flex-1 flex-col justify-center gap-3.5 px-6 pb-6">
+            {clients.map((c) => (
+              <div key={c.initials} className="flex items-center gap-3">
+                <div className="flex size-8 shrink-0 items-center justify-center rounded-full bg-surface-2 text-[11px] font-semibold text-foreground ring-1 ring-border">
+                  {c.initials}
                 </div>
-                {/* <p className="max-w-xl text-pretty text-muted-foreground">Description</p> */}
-            </div>
-            
-            <div className="w-10 h-10 border mt-4 rounded-md flex items-center justify-center bg-gradient-to-t from-black/80 to-black">
-              <UsersRound className="size-5" fill="#fff" stroke="#fff" />
-            </div>
-            <div className="absolute bottom-0 left-0 h-24 w-full bg-gradient-to-t from-neutral-800 pointer-events-none"></div>
-        </div>
-        
-  
-        <div className="group relative flex flex-col justify-between items-start overflow-hidden p-6 rounded-lg bg-[#1A1A1A] ring-1 ring-primary/20 transition-all duration-500 ease-out ">
-          {/* card title */}
-          <div className="flex flex-col items-start justify-center gap-2">
-            <div>
-              <h3 className="font-semibold mb-2 text-primary">
-                {dict.features.custom_workout}
-              </h3>
-              <p className="text-muted-foreground">
-                {dict.features.custom_workout_desc}
-              </p>
-            </div>
+                <div className="flex-1">
+                  <div className="flex justify-between text-xs">
+                    <span className="text-foreground/80">{c.name}</span>
+                    <span className="text-primary">{c.prog}%</span>
+                  </div>
+                  <div className="mt-1 h-1.5 overflow-hidden rounded-full bg-surface-2">
+                    <div
+                      className="h-full rounded-full bg-primary"
+                      style={{ width: `${c.prog}%` }}
+                    />
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
+        </div>
 
-          {/* image */}
-          <div className="w-10 h-10 border rounded-md mt-4 flex items-center justify-center bg-gradient-to-t from-black/80 to-black">
-              <CalendarCheck2 className="size-5"  stroke="#9C9C9C" />
+        {/* 2 — Schede Personalizzate */}
+        <div className={cardCls}>
+          <CardHeader
+            Icon={Dumbbell}
+            title={dict.features.custom_workout}
+            desc={dict.features.custom_workout_desc}
+          />
+          <div className="flex flex-1 flex-col justify-center gap-2.5 px-6 pb-6">
+            {exercises.map(([name, reps, done]) => (
+              <div
+                key={name as string}
+                className="flex items-center justify-between rounded-lg bg-surface-2 px-3 py-2.5"
+              >
+                <div className="flex items-center gap-2.5 text-xs text-foreground/80">
+                  <span
+                    className={`flex size-4 items-center justify-center rounded-[5px] ${
+                      done
+                        ? "bg-primary text-primary-foreground"
+                        : "ring-1 ring-border"
+                    }`}
+                  >
+                    {done && <Check className="size-3" strokeWidth={3} />}
+                  </span>
+                  {name}
+                </div>
+                <span className="rounded-md bg-primary/10 px-2 py-0.5 text-[11px] font-medium text-primary ring-1 ring-primary/20">
+                  {reps}
+                </span>
+              </div>
+            ))}
           </div>
-          <div className="absolute bottom-0 left-0 h-16 w-full bg-gradient-to-t from-neutral-800 pointer-events-none"></div>
         </div>
-        
-        
-        <div className="group relative items-start min-h-72 overflow-hidden pt-6 rounded-lg md:row-span-2 bg-[#1A1A1A] ring-1 ring-primary/20 transition-all duration-500 ease-out ">
-            <div className="flex flex-col items-start justify-center gap-2  px-6">
-                <h3 className="font-semibold mb-2 text-primary">
-                  {dict.features.calendar}
-                </h3>
-                <p className="text-muted-foreground">
-                  {dict.features.calendar_desc}
-                </p>
-            </div>
+
+        {/* 3 — Calendario Integrato */}
+        <div className={cardCls}>
+          <CardHeader
+            Icon={CalendarCheck2}
+            title={dict.features.calendar}
+            desc={dict.features.calendar_desc}
+          />
+          <div className="flex flex-1 items-center justify-center px-4 pb-5">
             <Calendar
               mode="single"
               selected={new Date()}
-              className="absolute right-0 mt-4 lg:mt-10 -mr-1 rounded-md border transition-all duration-300 ease-out [mask-image:linear-gradient(to_top,transparent_40%,#000_100%)] group-hover:scale-105"
+              className="scale-95 rounded-lg border border-border bg-surface-2/50 transition-transform duration-300 group-hover:scale-100"
             />
-
-            <div className="absolute bottom-0 right-0 h-64 w-full p-0 bg-gradient-to-t from-neutral-800 pointer-events-none"></div>
-        </div>
-        
-        
-        <div className="group relative flex flex-col justify-between items-start overflow-hidden p-6 rounded-lg order-4 md:col-span-2 xl:order-none bg-[#1A1A1A] ring-1 ring-primary/20 transition-all duration-500 ease-out">
-          {/* card title */}
-          <div className="flex flex-col items-start justify-center gap-2 ">
-            <div>
-              <h3 className="font-semibold mb-2 text-primary">
-                {dict.features.exercises}
-              </h3>
-              <p className="text-muted-foreground">
-              {dict.features.exercises_desc}
-              </p>
-            </div>
-            {/* <p className="max-w-xl text-pretty text-muted-foreground">Description</p> */}
           </div>
-          {/* image */}
-          
-          <div className="w-10 h-10 mt-4 border rounded-md flex items-center justify-center bg-gradient-to-t from-black/80 to-black">
-            <Play className="size-5" fill="#fff" stroke="#fff" />
-          </div>
-          <div className="absolute bottom-0 left-0 h-24 w-full bg-gradient-to-t from-neutral-800 pointer-events-none"></div>
         </div>
 
-        <div className="group relative items-start overflow-hidden pt-6 rounded-lg md:row-span-2 bg-[#1A1A1A] ring-1 ring-primary/20 transition-all duration-500 ease-out ">
-            <div className="flex flex-col items-start justify-center gap-2  px-6">
-                <h3 className="font-semibold mb-2 text-primary">
-                  {dict.features.chat}
-                </h3>
-                <p className="text-muted-foreground">
-                  {dict.features.chat_desc}
+        {/* 4 — Video Esercizi (wide) — biblioteca/catalogo, niente play */}
+        <div className={`${cardCls} md:col-span-2`}>
+          <CardHeader
+            Icon={Video}
+            title={dict.features.exercises}
+            desc={dict.features.exercises_desc}
+          />
+          <div className="grid flex-1 content-center grid-cols-1 gap-2.5 px-6 pb-6 pt-1 sm:grid-cols-2">
+            {(it
+              ? [
+                  ["Squat", "Gambe", "0:45"],
+                  ["Panca piana", "Petto", "1:10"],
+                  ["Stacco da terra", "Schiena", "0:58"],
+                  ["Plank", "Core", "0:30"],
+                ]
+              : [
+                  ["Squat", "Legs", "0:45"],
+                  ["Bench Press", "Chest", "1:10"],
+                  ["Deadlift", "Back", "0:58"],
+                  ["Plank", "Core", "0:30"],
+                ]
+            ).map(([name, muscle, dur]) => (
+              <div
+                key={name}
+                className="flex items-center gap-3 rounded-lg bg-surface-2 px-3 py-2.5"
+              >
+                <div className="flex size-9 shrink-0 items-center justify-center rounded-md bg-primary/10 ring-1 ring-primary/20">
+                  <Video className="size-4 text-primary" />
+                </div>
+                <div className="min-w-0 flex-1">
+                  <div className="truncate text-xs text-foreground/85">{name}</div>
+                  <div className="text-[10px] uppercase tracking-wide text-muted-foreground">
+                    {muscle}
+                  </div>
+                </div>
+                <span className="shrink-0 font-mono text-[10px] text-muted-foreground">
+                  {dur}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* 5 — Gestione Pagamenti (compatta) */}
+        <div className={cardCls}>
+          <CardHeader
+            Icon={CreditCard}
+            title={dict.features.payment}
+            desc={dict.features.payment_desc}
+          />
+          <div className="flex flex-1 flex-col justify-center px-6 pb-6 pt-1">
+            <div className="flex items-end justify-between gap-4">
+              <div>
+                <div className="flex items-end gap-2">
+                  <span className="font-display text-3xl text-foreground">€2.450</span>
+                  <span className="mb-1 inline-flex items-center gap-0.5 text-xs text-primary">
+                    <TrendingUp className="size-3.5" />
+                    +18%
+                  </span>
+                </div>
+                <p className="text-[11px] text-muted-foreground">
+                  {it ? "Incassi questo mese" : "Revenue this month"}
                 </p>
+              </div>
+              <div className="flex h-12 items-end gap-1.5">
+                {revenue.map((h, i) => (
+                  <div
+                    key={i}
+                    className={`w-2.5 rounded-t ${
+                      i === revenue.length - 2 ? "bg-primary" : "bg-primary/30"
+                    }`}
+                    style={{ height: `${h}%` }}
+                  />
+                ))}
+              </div>
             </div>
-            <div className="h-full">
-              <AnimatedListComp />
-            </div>
-            
-            <div className="absolute bottom-0 right-0 h-64 w-full p-0 bg-gradient-to-t from-neutral-800 pointer-events-none"></div>
-        </div>
-
-        <div className="group relative flex flex-col justify-between items-start overflow-hidden p-6 rounded-lg order-4 md:col-span-2 xl:order-none bg-[#1A1A1A] ring-1 ring-primary/20 transition-all duration-500 ease-out">
-          {/* card title */}
-          <div className="flex flex-col items-start justify-center gap-2 p-2">
-            <div>
-              <h3 className="font-semibold mb-2 text-primary">
-                {dict.features.payment}
-              </h3>
-              <p className="text-muted-foreground">
-              {dict.features.payment_desc}
-              </p>
-            </div>
-            {/* <p className="max-w-xl text-pretty text-muted-foreground">Description</p> */}
           </div>
-          {/* image */}
-          <div className="flex items-center pt-2 gap-2">
-              <div className="w-10 h-10 border rounded-md flex items-center justify-center bg-gradient-to-t from-black/80 to-black">
-                <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="#fff" className="size-6"><title>MasterCard</title><path d="M11.343 18.031c.058.049.12.098.181.146-1.177.783-2.59 1.238-4.107 1.238C3.32 19.416 0 16.096 0 12c0-4.095 3.32-7.416 7.416-7.416 1.518 0 2.931.456 4.105 1.238-.06.051-.12.098-.165.15C9.6 7.489 8.595 9.688 8.595 12c0 2.311 1.001 4.51 2.748 6.031zm5.241-13.447c-1.52 0-2.931.456-4.105 1.238.06.051.12.098.165.15C14.4 7.489 15.405 9.688 15.405 12c0 2.31-1.001 4.507-2.748 6.031-.058.049-.12.098-.181.146 1.177.783 2.588 1.238 4.107 1.238C20.68 19.416 24 16.096 24 12c0-4.094-3.32-7.416-7.416-7.416zM12 6.174c-.096.075-.189.15-.28.231C10.156 7.764 9.169 9.765 9.169 12c0 2.236.987 4.236 2.551 5.595.09.08.185.158.28.232.096-.074.189-.152.28-.232 1.563-1.359 2.551-3.359 2.551-5.595 0-2.235-.987-4.236-2.551-5.595-.09-.08-.184-.156-.28-.231z"/></svg>
-              </div>
-              <div className="w-10 h-10 border rounded-md flex items-center justify-center bg-gradient-to-t from-black/80 to-black">
-                <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" className="size-6" fill="#fff"><title>Visa</title><path d="M9.112 8.262L5.97 15.758H3.92L2.374 9.775c-.094-.368-.175-.503-.461-.658C1.447 8.864.677 8.627 0 8.479l.046-.217h3.3a.904.904 0 01.894.764l.817 4.338 2.018-5.102zm8.033 5.049c.008-1.979-2.736-2.088-2.717-2.972.006-.269.262-.555.822-.628a3.66 3.66 0 011.913.336l.34-1.59a5.207 5.207 0 00-1.814-.333c-1.917 0-3.266 1.02-3.278 2.479-.012 1.079.963 1.68 1.698 2.04.756.367 1.01.603 1.006.931-.005.504-.602.725-1.16.734-.975.015-1.54-.263-1.992-.473l-.351 1.642c.453.208 1.289.39 2.156.398 2.037 0 3.37-1.006 3.377-2.564m5.061 2.447H24l-1.565-7.496h-1.656a.883.883 0 00-.826.55l-2.909 6.946h2.036l.405-1.12h2.488zm-2.163-2.656l1.02-2.815.588 2.815zm-8.16-4.84l-1.603 7.496H8.34l1.605-7.496z"/></svg>
-              </div>
-              <div className="w-10 h-10 border rounded-md flex items-center justify-center bg-gradient-to-t from-black/80 to-black">
-                <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" stroke="#fff" className="size-6"><title>PayPal</title><path d="M7.016 19.198h-4.2a.562.562 0 0 1-.555-.65L5.093.584A.692.692 0 0 1 5.776 0h7.222c3.417 0 5.904 2.488 5.846 5.5-.006.25-.027.5-.066.747A6.794 6.794 0 0 1 12.071 12H8.743a.69.69 0 0 0-.682.583l-.325 2.056-.013.083-.692 4.39-.015.087zM19.79 6.142c-.01.087-.01.175-.023.261a7.76 7.76 0 0 1-7.695 6.598H9.007l-.283 1.795-.013.083-.692 4.39-.134.843-.014.088H6.86l-.497 3.15a.562.562 0 0 0 .555.65h3.612c.34 0 .63-.249.683-.585l.952-6.031a.692.692 0 0 1 .683-.584h2.126a6.793 6.793 0 0 0 6.707-5.752c.306-1.95-.466-3.744-1.89-4.906z"/></svg>
-              </div>
-              
-            </div>
-          
-          <div className="absolute bottom-0 left-0 h-24 w-full bg-gradient-to-t from-neutral-800 pointer-events-none"></div>
         </div>
 
-        <div className="group relative items-start overflow-hidden p-6 rounded-lg z-10 flex-row order-4 md:col-span-2 md:flex-row xl:order-none bg-[#1A1A1A] ring-1 ring-primary/20 transition-all duration-500 ease-out">
-          {/* card title */}
-          <div className="flex flex-col items-start justify-center gap-2 p-2">
-            <div>
-              <h3 className="font-semibold mb-2 text-primary">
-                {dict.features.app}
-              </h3>
-              <p className="text-muted-foreground w-1/2 pr-4 pb-4">
-              {dict.features.app_desc}
-              </p>
-            </div>
-            {/* <p className="max-w-xl text-pretty text-muted-foreground">Description</p> */}
+        {/* 6 — Chat Integrata (wide) — conversazione reale */}
+        <div className={`${cardCls} md:col-span-2`}>
+          <CardHeader
+            Icon={MessageSquare}
+            title={dict.features.chat}
+            desc={dict.features.chat_desc}
+          />
+          <div className="flex flex-1 flex-col justify-center gap-3 px-6 pb-6 pt-1">
+            {(it
+              ? [
+                  ["in", "Giulia", "Ciao! Ho finito la scheda di oggi 💪"],
+                  ["out", "", "Grande Giulia! Com'è andato lo squat?"],
+                  ["in", "Giulia", "Bene, sono salita a 60kg! 🔥"],
+                  ["out", "", "Perfetto, la prossima settimana aumentiamo ancora"],
+                ]
+              : [
+                  ["in", "Giulia", "Hi! Just finished today's workout 💪"],
+                  ["out", "", "Great Giulia! How did the squat feel?"],
+                  ["in", "Giulia", "Good, I went up to 60kg! 🔥"],
+                  ["out", "", "Perfect, we'll add more next week"],
+                ]
+            ).map(([dir, name, text], i) =>
+              dir === "in" ? (
+                <div key={i} className="flex items-start gap-2.5">
+                  <div className="flex size-7 shrink-0 items-center justify-center rounded-full bg-surface-2 text-[10px] font-semibold text-foreground ring-1 ring-border">
+                    {(name as string).charAt(0)}
+                  </div>
+                  <div className="max-w-[80%] rounded-2xl rounded-tl-sm bg-surface-2 px-3.5 py-2">
+                    <span className="mb-0.5 block text-[10px] text-muted-foreground">
+                      {name}
+                    </span>
+                    <span className="text-xs leading-relaxed text-foreground/90">
+                      {text}
+                    </span>
+                  </div>
+                </div>
+              ) : (
+                <div key={i} className="flex justify-end">
+                  <div className="max-w-[80%] rounded-2xl rounded-tr-sm bg-primary px-3.5 py-2">
+                    <span className="text-xs leading-relaxed text-primary-foreground">
+                      {text}
+                    </span>
+                  </div>
+                </div>
+              )
+            )}
           </div>
-          {/* image */}
-          
-          <Iphone15Pro height={270} className="absolute pb-10 top-8 z-0 -right-48 lg:right-0 opacity-50" />
-          <div className="absolute bottom-0 left-0 h-20 w-full bg-gradient-to-t from-neutral-800 pointer-events-none"></div>
         </div>
 
+        {/* 7 — App Mobile — solo disponibilità, niente mockup */}
+        <div className={cardCls}>
+          <CardHeader
+            Icon={Smartphone}
+            title={dict.features.app}
+            desc={dict.features.app_desc}
+          />
+          <div className="flex flex-1 flex-col px-6 pb-6 pt-1">
+            <div className="space-y-2.5">
+              {(it
+                ? [
+                    "Schede sempre a portata di mano",
+                    "Traccia allenamenti e progressi",
+                    "Promemoria e notifiche push",
+                  ]
+                : [
+                    "Workouts always in their pocket",
+                    "Track training and progress",
+                    "Reminders and push notifications",
+                  ]
+              ).map((b) => (
+                <div key={b} className="flex items-center gap-2.5">
+                  <span className="flex size-4 shrink-0 items-center justify-center rounded-[5px] bg-primary text-primary-foreground">
+                    <Check className="size-3" strokeWidth={3} />
+                  </span>
+                  <span className="text-sm text-foreground/80">{b}</span>
+                </div>
+              ))}
+            </div>
 
+            <div className="mt-auto flex items-center gap-2.5 pt-5">
+              <svg viewBox="0 0 24 24" fill="currentColor" className="size-4 text-muted-foreground">
+                <path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09l.01-.01zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z" />
+              </svg>
+              <svg viewBox="0 0 24 24" fill="currentColor" className="size-4 text-muted-foreground">
+                <path d="M17.523 15.3414c-.5511 0-.9993-.4486-.9993-.9997s.4482-.9993.9993-.9993c.5511 0 .9993.4482.9993.9993 0 .5511-.4482.9997-.9993.9997m-11.046 0c-.5511 0-.9993-.4486-.9993-.9997s.4482-.9993.9993-.9993c.5511 0 .9993.4482.9993.9993 0 .5511-.4482.9997-.9993.9997m11.4045-6.02l1.9973-3.4592a.416.416 0 00-.1521-.5676.416.416 0 00-.5676.1521l-2.0223 3.503C15.5902 8.2439 13.8533 7.8508 12 7.8508s-3.5902.3931-5.1367 1.0989L4.841 5.4467a.4161.4161 0 00-.5676-.1521.4157.4157 0 00-.1521.5676l1.9973 3.4592C2.6889 11.1867.3432 14.6589 0 18.761h24c-.3435-4.1021-2.6892-7.5743-6.1185-9.4396" />
+              </svg>
+              <span className="text-xs text-muted-foreground">
+                {it ? "Disponibile per iOS e Android" : "Available for iOS & Android"}
+              </span>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );

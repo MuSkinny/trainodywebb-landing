@@ -17,12 +17,12 @@ const Pricing = async ({
     return(
         <section className="w-full flex flex-col justify-center" id="pricing">
             <div className="px-14 w-full flex flex-col items-center justify-items-center  pt-8 pb-20">
-                <div className="flex items-center justify-center gap-2 rounded-xl border bg-card px-3 py-1.5 text-foreground/90 shadow-sm">
-                    <Banknote className="size-5" />
-                    <span className="text-foreground text-sm">{dict.pricing.badge_text}</span>
+                <div className="flex items-center justify-center gap-2 rounded-full border border-border bg-surface px-3.5 py-1.5">
+                    <Banknote className="size-4 text-primary" />
+                    <span className="text-foreground text-xs uppercase tracking-wider">{dict.pricing.badge_text}</span>
                 </div>
-                
-                <h2 className="mt-4 text-3xl lg:text-4xl font-medium text-balance text-center tracking-tight">{dict.pricing.title}</h2>
+
+                <h2 className="mt-5 font-display text-3xl uppercase lg:text-5xl text-balance text-center tracking-tight">{dict.pricing.title}</h2>
                 <p className="max-w-3xl text-pretty text-center text-muted-foreground md:text-lg">
                     {dict.pricing.subtitle}
                 </p>
@@ -33,15 +33,15 @@ const Pricing = async ({
                     
                     {
                         plans.map((plan: any, i: number) => (
-                            <div className={`${plan.bestSeller ? 'bg-gradient-to-b from-primary to-primary/80 text-foreground' : 'bg-[#1A1A1A] text-white ring-inset ring-1 ring-primary/20'} text-card-foreground shadow-sm relative flex min-h-[550px] grow basis-[26rem] flex-col justify-between rounded-2xl px-7 py-6 md:grow-0 md:px-9 md:py-7`} key={i}>
+                            <div className={`${plan.bestSeller ? 'bg-gradient-to-b from-primary to-primary/85 text-[#0C0C0D] shadow-glow-lg' : 'bg-surface text-foreground ring-1 ring-border'} relative flex min-h-[550px] grow basis-[26rem] flex-col justify-between rounded-2xl px-7 py-6 md:grow-0 md:px-9 md:py-7`} key={i}>
                                 {
-                                    plan.bestSeller && <div className="inline-flex items-center text-xs transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent absolute right-8 top-0 -translate-y-1/2 rotate-6 rounded-full bg-[#1A1A1A] px-4 py-1.5 font-medium text-background shadow-lg">🔥 Bestseller</div>
+                                    plan.bestSeller && <div className="inline-flex items-center text-xs absolute right-8 top-0 -translate-y-1/2 rotate-3 rounded-full bg-[#0C0C0D] px-4 py-1.5 font-display uppercase tracking-wide text-primary shadow-lg">🔥 Bestseller</div>
                                 }
-                                
+
                                 <div>
-                                    <span className="text-xl">{plan.name}</span>
+                                    <span className="text-sm uppercase tracking-wider opacity-70">{plan.name}</span>
                                     <p className="relative flex items-end gap-1 py-5 md:py-7">
-                                        <span className="text-3xl font-semibold md:text-4xl">{lang == 'it' ? plan.price : plan.price_en}</span>
+                                        <span className="font-display text-4xl md:text-5xl">{lang == 'it' ? plan.price : plan.price_en}</span>
                                         { plan.oldPrice && <span className="ml-3 text-lg font-medium line-through opacity-45 md:text-3xl">{plan.oldPrice}</span>}
                                         {i !== 0 && <span>/{dict.common.month}</span> }
                                     </p>
@@ -71,24 +71,24 @@ const Pricing = async ({
                                     {
                                         plan.name == "Basic" && <a 
                                             href={process.env.REGISTER_LINK!}
-                                            className={`flex justify-center px-4 py-2 rounded-lg ${plan.bestSeller ? 'bg-[#1A1A1A] text-background': 'bg-primary text-foreground'} `}>
-                                            <span className="font-medium text-center ">{dict.pricing.try}</span>
+                                            className={`flex justify-center px-4 py-3 rounded-lg font-display uppercase text-sm tracking-wide transition-transform hover:scale-[1.02] ${plan.bestSeller ? 'bg-[#0C0C0D] text-primary': 'bg-primary text-primary-foreground'} `}>
+                                            <span className="text-center">{dict.pricing.try}</span>
                                         </a>
                                         
                                     }
                                     {
                                         plan.name == "Pro" && <a 
                                             href={`${process.env.REGISTER_LINK!}?plan=pro`}
-                                            className={`flex justify-center px-4 py-2 rounded-lg ${plan.bestSeller ? 'bg-[#1A1A1A] text-background': 'bg-primary text-foreground'} `}>
-                                            <span className="font-medium text-center ">{dict.pricing.try}</span>
+                                            className={`flex justify-center px-4 py-3 rounded-lg font-display uppercase text-sm tracking-wide transition-transform hover:scale-[1.02] ${plan.bestSeller ? 'bg-[#0C0C0D] text-primary': 'bg-primary text-primary-foreground'} `}>
+                                            <span className="text-center">{dict.pricing.try}</span>
                                         </a>
                                         
                                     }
                                     {
                                         plan.name == "Business" && <a 
                                             href={`${process.env.REGISTER_LINK!}?plan=business`}
-                                            className={`flex justify-center px-4 py-2 rounded-lg ${plan.bestSeller ? 'bg-[#1A1A1A] text-background': 'bg-primary  text-foreground'} `}>
-                                            <span className="font-medium text-center ">{dict.pricing.try}</span>
+                                            className={`flex justify-center px-4 py-3 rounded-lg font-display uppercase text-sm tracking-wide transition-transform hover:scale-[1.02] ${plan.bestSeller ? 'bg-[#0C0C0D] text-primary': 'bg-primary text-primary-foreground'} `}>
+                                            <span className="text-center">{dict.pricing.try}</span>
                                         </a>
                                     }
                                     

@@ -1,4 +1,6 @@
 import ChangeLanguage from "./change-language"
+import Image from "next/image"
+import logo from "@/public/trainody-logo.svg"
 
 const Footer = ({ lang }: { lang: "it" | "en" }) => {
 
@@ -26,9 +28,19 @@ const Footer = ({ lang }: { lang: "it" | "en" }) => {
         <footer className="items-center flex w-full max-w-[83rem] flex-col gap-10 px-6 pt-12 sm:items-start sm:gap-12 md:gap-14 md:pt-16 lg:gap-16 lg:pt-20 pb-16">
             <div className="flex w-full flex-col items-start justify-between gap-10 md:gap-16 lg:flex-row lg:gap-32 xl:gap-64">
                 <div className="flex flex-col items-start justify-center gap-3">
-                    <a href="/">
-                        <div className="flex items-center gap-2 text-xl font-medium">
-                            Trainody
+                    <a href={`/${locale}`}>
+                        <div className="flex items-center gap-2">
+                            <Image
+                                src={logo}
+                                alt="Trainody"
+                                width={32}
+                                height={32}
+                                unoptimized
+                                className="rounded-lg"
+                            />
+                            <span className="font-display text-xl uppercase tracking-tight">
+                                Trainody
+                            </span>
                         </div>
                         <span className="sr-only">Home</span>
                     </a>

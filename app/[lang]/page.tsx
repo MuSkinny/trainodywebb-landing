@@ -27,9 +27,10 @@ const homeMeta = {
 export async function generateMetadata({
   params,
 }: {
-  params: { lang: "it" | "en" };
+  params: Promise<{ lang: string }>;
 }): Promise<Metadata> {
-  const lang = params.lang === "en" ? "en" : "it";
+  const { lang: rawLang } = await params;
+  const lang = rawLang === "en" ? "en" : "it";
   return buildMetadata({
     lang,
     path: "",
@@ -41,12 +42,13 @@ export async function generateMetadata({
 export default async function Index({
   params,
 }: {
-  params: { lang: "it" | "en" };
+  params: Promise<{ lang: string }>;
 }) {
-  const lang = params.lang === "en" ? "en" : "it";
+  const { lang: rawLang } = await params;
+  const lang = rawLang === "en" ? "en" : "it";
 
   return (
-    <div className="w-full mx-auto bg-[#0f0f0f] relative">
+    <div className="w-full mx-auto bg-background relative">
       <JsonLd lang={lang} />
       <Header lang={lang} />
       {/* <VerticalHero lang={lang} /> */}

@@ -18,12 +18,20 @@ const config = {
   		}
   	},
   	extend: {
+  		fontFamily: {
+  			sans: ['var(--font-sans)', 'system-ui', 'sans-serif'],
+  			display: ['var(--font-display)', 'var(--font-sans)', 'sans-serif']
+  		},
   		colors: {
   			border: 'hsl(var(--border))',
   			input: 'hsl(var(--input))',
   			ring: 'hsl(var(--ring))',
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
+  			surface: {
+  				DEFAULT: 'hsl(var(--surface))',
+  				2: 'hsl(var(--surface-2))'
+  			},
   			primary: {
   				DEFAULT: 'hsl(var(--primary))',
   				foreground: 'hsl(var(--primary-foreground))'
@@ -114,11 +122,18 @@ const config = {
   			grid: 'grid 15s linear infinite'
   		},
 		boxShadow: {
-			'green-lg': '0 5px 7px -3px rgba(162, 229, 51, 0.2)', // Example with Tailwind's emerald-500
+			'green-lg': '0 5px 7px -3px rgba(162, 229, 51, 0.2)',
+			'glow': '0 0 0 1px rgba(162, 229, 51, 0.25), 0 8px 40px -8px rgba(162, 229, 51, 0.35)',
+			'glow-lg': '0 0 60px -10px rgba(162, 229, 51, 0.45)',
+			'elevated': '0 24px 60px -20px rgba(0, 0, 0, 0.8)',
+		},
+		backgroundImage: {
+			'grid-tech': 'linear-gradient(to right, rgba(255,255,255,0.04) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.04) 1px, transparent 1px)',
+			'lime-mesh': 'radial-gradient(60% 60% at 50% 0%, rgba(162,229,51,0.18) 0%, transparent 70%)',
 		}
   	}
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [require("tailwindcss-animate"), require("@tailwindcss/typography")],
 } satisfies Config;
 
 export default config;

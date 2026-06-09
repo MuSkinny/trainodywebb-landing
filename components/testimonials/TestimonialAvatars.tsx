@@ -8,13 +8,13 @@ const TestimonialAvatars = async ({ lang }: { lang: any }) => {
   const dict = await getDictionary(lang);
 
   return (
-    <div className="flex flex-col items-start">
-      <div className="flex flex-row items-center">
+    <div className="flex flex-row items-center gap-2">
+      <div className="flex flex-row items-center gap-0.5">
         {[...Array(starts_number)].map((_: any, i: number) => (
-          <StarIcon className="w-4" fill="#97D731" stroke="none" key={i} />
+          <StarIcon className="w-3.5" fill="#97D731" stroke="none" key={i} />
         ))}
       </div>
-      <span className="text-xs md:text-sm -mt-1">
+      <span className="text-xs md:text-sm font-medium text-foreground/80">
         20+ {dict.hero.badgeReviewText}
       </span>
     </div>

@@ -1,5 +1,6 @@
 import PrivacyPolicyEN from '@/components/privacy-policy-en'
 import PrivacyPolicyIT from '@/components/privacy-policy-it'
+import LegalShell from '@/components/legal-shell'
 import { buildMetadata } from '@/lib/seo'
 import type { Metadata } from 'next'
 import React from 'react'
@@ -18,9 +19,10 @@ const meta = {
 export async function generateMetadata({
     params,
 }: {
-    params: { lang: 'it' | 'en' }
+    params: Promise<{ lang: string }>
 }): Promise<Metadata> {
-    const lang = params.lang === 'en' ? 'en' : 'it'
+    const { lang: rawLang } = await params
+    const lang = rawLang === 'en' ? 'en' : 'it'
     return buildMetadata({
         lang,
         path: '/privacy-policy',
@@ -29,19 +31,17 @@ export async function generateMetadata({
     })
 }
 
-export default function PrivacyPolicy({
+export default async function PrivacyPolicy({
     params
 }: {
-    params: {lang: string}
+    params: Promise<{ lang: string }>
 }) {
 
-    const lang = params.lang
-    
+    const { lang } = await params
+
     return (
-        <>
-        {
-            lang == 'it' ? <PrivacyPolicyIT /> : <PrivacyPolicyEN />
-        }
-        </>
+        <LegalShell lang={lang}>
+            {lang == 'it' ? <PrivacyPolicyIT /> : <PrivacyPolicyEN />}
+        </LegalShell>
     )
 }

@@ -2,58 +2,59 @@ import Link from "next/link";
 import AnimatedText from "../AnimatedText";
 import TestimonialAvatars from "../testimonials/TestimonialAvatars";
 import { getDictionary } from "@/lib/dictionary";
-import Image from "next/image";
-import body from "@/public/assets/img_body.png";
+import HeroCarousel from "./hero-carousel";
 
 const Hero = async ({ lang }: { lang: any }) => {
   const dict = await getDictionary(lang);
 
   return (
-    <section
-      className="w-full relative flex flex-col overflow-hidden h-screen py-32 lg:py-40 pb-24 lg:px-24 bg-left-top sm:bg-center bg-[#282828]"
-    >
-         <div className="absolute inset-0">
-            {/* Usa Next/Image per l'ottimizzazione automatica */}
-            <Image
-                src={body}  // Sostituisci con il path della tua immagine
-                alt=""
-                fill
-                priority  // Indica a Next.js di caricare questa immagine con priorità
-                sizes="100vw"  // Serve la dimensione corretta dell'immagine di sfondo full-width
-                quality={75}  // Ottimizza la qualità dell'immagine (default è 75)
-                className="object-cover"  // Mantiene le proporzioni corrette
-            />
-      </div>
+    <section className="relative w-full overflow-hidden bg-background min-h-[100svh] flex items-center py-28 lg:py-32 lg:px-24">
+      {/* Carosello immagini (cross-fade) */}
+      <HeroCarousel />
+
+      {/* Scrim orizzontale: lato testo solido, foto che emerge a destra (fonde il seam) */}
+      <div className="absolute inset-0 bg-gradient-to-r from-background via-background/85 to-transparent" />
+      {/* Fade inferiore: transizione morbida verso la sezione successiva */}
+      <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-background to-transparent" />
+      {/* Griglia tecnica sottile */}
+      <div className="pointer-events-none absolute inset-0 bg-grid-tech [background-size:46px_46px] opacity-[0.4] [mask-image:radial-gradient(50%_45%_at_22%_55%,#000,transparent)]" />
 
       <div className="relative container z-10 flex flex-col items-start gap-6">
-        <AnimatedText delay={0.3} direction="bottom" className="px-4">
-          <TestimonialAvatars lang={lang} />
+        {/* Trust */}
+        <AnimatedText delay={0.15} direction="bottom" className="px-4">
+          <div className="inline-flex items-center gap-3 rounded-full border border-border bg-surface/60 px-4 py-1.5 backdrop-blur-sm">
+            <TestimonialAvatars lang={lang} />
+          </div>
         </AnimatedText>
 
+        {/* Titolo + sottotitolo */}
         <AnimatedText delay={0.2} direction="bottom" className="px-4">
-          <h1 className="bg-gradient-to-b from-secondary-foreground to-primary-foreground bg-clip-text font-bold text-3xl md:text-5xl flex flex-col items-start">
-            <span className="w-full max-w-lg lg:max-w-2xl">
+          <h1 className="bg-gradient-to-br from-foreground to-primary bg-clip-text text-transparent font-display text-4xl md:text-6xl leading-[1.02] flex flex-col items-start">
+            <span className="w-full max-w-lg lg:max-w-2xl uppercase">
               {dict.hero.title}
             </span>
           </h1>
-          <p className="max-w-lg mt-3 text-lg md:text-xl font-light">
+          <p className="max-w-lg mt-5 text-lg md:text-xl font-light text-foreground/70">
             {dict.hero.subtitle}
           </p>
         </AnimatedText>
 
+        {/* CTA */}
         <AnimatedText delay={0.3} direction="bottom" className="px-4 z-20">
-          <div className="cta pt-4">
+          <div className="flex flex-col items-start gap-3 pt-4">
             <Link
-              className="hover:cursor-pointer flex justify-center bg-[#97D731] px-14 py-4 rounded-lg hover:scale-[1.05] transition-all duration-150 ease-in"
+              className="group inline-flex items-center justify-center gap-2 rounded-lg bg-primary px-12 py-4 font-display text-base uppercase tracking-wide text-primary-foreground shadow-glow transition-all duration-200 hover:scale-[1.03] hover:shadow-glow-lg"
               href={`https://app.trainody.com/${lang}/sign-up`}
             >
-              <span className="text-[#282828] font-semibold text-base">
-                {dict.hero.ctaButtonText}
-              </span>
+              {dict.hero.ctaButtonText}
             </Link>
+            <span className="text-xs text-foreground/50">
+              {lang === "it"
+                ? "Nessuna carta richiesta · Inizia in 2 minuti"
+                : "No card required · Get started in 2 minutes"}
+            </span>
           </div>
         </AnimatedText>
-
       </div>
     </section>
   );

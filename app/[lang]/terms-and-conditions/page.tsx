@@ -1,5 +1,6 @@
 import TermsAndConditionsEN from "@/components/t&c-en"
 import TermsAndConditionsIT from "@/components/t&c-it"
+import LegalShell from "@/components/legal-shell"
 import { buildMetadata } from "@/lib/seo"
 import type { Metadata } from "next"
 
@@ -17,9 +18,10 @@ const meta = {
 export async function generateMetadata({
     params,
 }: {
-    params: { lang: 'it' | 'en' }
+    params: Promise<{ lang: string }>
 }): Promise<Metadata> {
-    const lang = params.lang === 'en' ? 'en' : 'it'
+    const { lang: rawLang } = await params
+    const lang = rawLang === 'en' ? 'en' : 'it'
     return buildMetadata({
         lang,
         path: "/terms-and-conditions",
@@ -31,14 +33,12 @@ export async function generateMetadata({
 export default async function TermsCondition({
     params
 }: {
-  params: { lang: 'it' | 'en' }
+  params: Promise<{ lang: string }>
 }) {
-    const lang = params.lang
+    const { lang } = await params
     return(
-        <>
-        {
-            lang == 'it' ? <TermsAndConditionsIT /> : <TermsAndConditionsEN />
-        }
-        </>
+        <LegalShell lang={lang}>
+            {lang == 'it' ? <TermsAndConditionsIT /> : <TermsAndConditionsEN />}
+        </LegalShell>
     )
 }

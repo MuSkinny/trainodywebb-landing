@@ -8,7 +8,7 @@ const dictionaries = {
 
 export const getDictionary = async (locale?: 'it' | 'en') => {
   // Se il locale non è fornito, usa l'header
-  const headerLocale = headers().get('x-locale');
+  const headerLocale = (await headers()).get('x-locale');
   const finalLocale = locale || headerLocale as 'it' | 'en';
 
   if (!dictionaries[finalLocale]) {

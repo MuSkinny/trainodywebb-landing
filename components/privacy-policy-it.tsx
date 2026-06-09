@@ -1,10 +1,10 @@
 const PrivacyPolicyIT = () => {
     return (
       <div className="max-w-4xl mx-auto px-4 py-8">
-        <div className="prose prose-slate max-w-none">
+        <div className="prose prose-invert max-w-none prose-headings:font-display prose-headings:tracking-tight prose-a:text-primary prose-a:no-underline hover:prose-a:underline prose-strong:text-foreground prose-li:marker:text-primary prose-hr:border-border">
           <h1 className="text-3xl font-bold mb-8">Privacy Policy di Trainody</h1>
           
-          <p className="text-sm text-gray-600 mb-8">Data di ultima modifica: 02/01/2025</p>
+          <p className="text-sm text-muted-foreground mb-8">Data di ultima modifica: 02/01/2025</p>
   
           <section className="mb-8">
             <h2 className="text-2xl font-semibold mb-4">1. Introduzione</h2>
