@@ -20,7 +20,7 @@ export function buildMetadata({
 }: BuildMetadataParams): Metadata {
   const canonical = `${SITE_URL}/${lang}${path}`;
   const languages = {
-    "it-IT": `${SITE_URL}/it${path}`,
+    it: `${SITE_URL}/it${path}`,
     en: `${SITE_URL}/en${path}`,
     "x-default": `${SITE_URL}/it${path}`,
   };

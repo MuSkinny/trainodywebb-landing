@@ -8,6 +8,8 @@ import Banner from "@/components/banner";
 import { TranslationsProvider } from "@/context/translation-context";
 import { getDictionary } from "@/lib/dictionary";
 import { SITE_URL } from "@/lib/seo";
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 
 export async function generateMetadata({
@@ -67,7 +69,9 @@ export default async function RootLayout({
               <Footer lang={lang} />
             </div>
           </main>
-        
+
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
     </TranslationsProvider>
