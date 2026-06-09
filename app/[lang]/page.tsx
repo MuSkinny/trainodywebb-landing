@@ -10,7 +10,6 @@ import TestimonialGrid from "@/components/testimonials/testimonials-grid";
 import JsonLd from "@/components/json-ld";
 import { buildMetadata } from "@/lib/seo";
 import type { Metadata } from "next";
-import { cookies } from "next/headers";
 
 const homeMeta = {
   it: {
@@ -39,13 +38,16 @@ export async function generateMetadata({
   });
 }
 
-export default async function Index() {
-  const cookieStore = cookies()
-  const lang: any  = cookieStore.get("NEXT_LOCALE")?.value ?? 'it'
+export default async function Index({
+  params,
+}: {
+  params: { lang: "it" | "en" };
+}) {
+  const lang = params.lang === "en" ? "en" : "it";
 
   return (
     <div className="w-full mx-auto bg-[#0f0f0f] relative">
-      <JsonLd lang={lang === "en" ? "en" : "it"} />
+      <JsonLd lang={lang} />
       <Header lang={lang} />
       {/* <VerticalHero lang={lang} /> */}
       <Hero lang={lang} />

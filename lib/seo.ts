@@ -25,6 +25,7 @@ export function buildMetadata({
     "x-default": `${SITE_URL}/it${path}`,
   };
   const ogLocale = lang === "it" ? "it_IT" : "en_US";
+  const ogImage = "/og-image-" + lang + ".png";
 
   return {
     title,
@@ -40,13 +41,13 @@ export function buildMetadata({
       description,
       url: canonical,
       locale: ogLocale,
-      images: [{ url: "/og-image.png", width: 1200, height: 630 }],
+      images: [{ url: ogImage, width: 1200, height: 630 }],
     },
     twitter: {
       card: "summary_large_image",
       title,
       description,
-      images: ["/og-image.png"],
+      images: [ogImage],
     },
     robots: { index: true, follow: true },
   };

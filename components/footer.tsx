@@ -1,11 +1,26 @@
-import { cookies } from "next/headers"
 import ChangeLanguage from "./change-language"
 
-const Footer = () => {
+const Footer = ({ lang }: { lang: "it" | "en" }) => {
 
     const year = new Date().getFullYear()
-    const cookieStore = cookies()
-    const locale = cookieStore.get("NEXT_LOCALE")?.value ?? 'it'
+    const locale = lang
+    const t = lang === 'it'
+        ? {
+            quick_links: "Link rapidi",
+            home: "Home",
+            pricing: "Prezzi",
+            legal: "Note legali",
+            terms: "Termini e condizioni",
+            privacy: "Privacy Policy",
+          }
+        : {
+            quick_links: "Quick links",
+            home: "Home",
+            pricing: "Pricing",
+            legal: "Legal",
+            terms: "Terms and Conditions",
+            privacy: "Privacy Policy",
+          }
 
     return(
         <footer className="items-center flex w-full max-w-[83rem] flex-col gap-10 px-6 pt-12 sm:items-start sm:gap-12 md:gap-14 md:pt-16 lg:gap-16 lg:pt-20 pb-16">
@@ -39,13 +54,13 @@ const Footer = () => {
                 </div>
                 <div className="grid w-full max-w-[28rem] grid-cols-2 gap-10">
                     <div className="flex w-full flex-col gap-4">
-                        <span className="font-medium text-muted-foreground">Quick links</span>
+                        <span className="font-medium text-muted-foreground">{t.quick_links}</span>
                         <ul className="flex flex-col gap-3">
                             <li className="cursor-pointer">
-                                <a href="/">Home</a>
+                                <a href="/">{t.home}</a>
                             </li>
                             <li className="cursor-pointer">
-                                <a href="#pricing">Pricing</a>
+                                <a href="#pricing">{t.pricing}</a>
                             </li>
 
                             <li className="flex gap-1">
@@ -59,14 +74,14 @@ const Footer = () => {
                     </div>
 
                     <div className="flex w-full flex-col gap-4">
-                        <span className="font-medium text-muted-foreground">Legal</span>
+                        <span className="font-medium text-muted-foreground">{t.legal}</span>
                         <ul className="flex flex-col gap-3">
                             <li>
-                                <a href={`/${locale}/terms-and-conditions`}>Termini e condizioni</a>
+                                <a href={`/${locale}/terms-and-conditions`}>{t.terms}</a>
                             </li>
 
                             <li>
-                                <a href={`/${locale}/privacy-policy`}>Privacy Policy</a>
+                                <a href={`/${locale}/privacy-policy`}>{t.privacy}</a>
                             </li>
 
                         </ul>

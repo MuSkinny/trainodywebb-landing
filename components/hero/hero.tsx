@@ -19,6 +19,7 @@ const Hero = async ({ lang }: { lang: any }) => {
                 alt=""
                 fill
                 priority  // Indica a Next.js di caricare questa immagine con priorità
+                sizes="100vw"  // Serve la dimensione corretta dell'immagine di sfondo full-width
                 quality={75}  // Ottimizza la qualità dell'immagine (default è 75)
                 className="object-cover"  // Mantiene le proporzioni corrette
             />
